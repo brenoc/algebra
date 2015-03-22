@@ -22,7 +22,7 @@ def eliminate(matrix, vector, i, j):
     return matrix, vector
 
 
-def multiply_matrix_by_vector(matrix, vector):
+def gauss_elimination(matrix, vector):
     for i, row in enumerate(matrix):
         # Skip if it is the first or the last row
         if i is 0 and i is len(matrix):
@@ -37,7 +37,7 @@ def multiply_matrix_by_vector(matrix, vector):
 
 
 if __name__ == '__main__':
-    matrix, vector = multiply_matrix_by_vector(L, b)
+    matrix, vector = gauss_elimination(L, b)
 
     print matrix
     print vector
