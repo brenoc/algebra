@@ -16,11 +16,11 @@ b = [3,
 # b is a vector (nx1)
 
 
-def eliminate(matrix, vector, row, current):
-    mult = matrix[row][current] / matrix[current][current]
-    row_mult = map(lambda x: x*mult, matrix[current])
-    matrix[row] = map(lambda x, y: x - y, matrix[row], row_mult)
-    vector[row] = vector[row] - mult * vector[current]
+def eliminate(matrix, vector, i, j):
+    mult = matrix[i][j] / matrix[j][j]
+    row_mult = map(lambda x: x*mult, matrix[j])
+    matrix[i] = map(lambda x, y: x - y, matrix[i], row_mult)
+    vector[i] = vector[i] - mult * vector[j]
     return matrix, vector
 
 
