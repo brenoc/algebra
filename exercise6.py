@@ -26,8 +26,12 @@ def eliminate(matrix, vector, i, j):
 
 def multiply_matrix_by_vector(matrix, vector):
     for i, row in enumerate(matrix):
-        if i > 0 and i != len(matrix):
+        # Skip if it is the first or the last row
+        if i is 0 and i is len(matrix):
+            pass
+        else:
             for j, col in enumerate(row):
+                # Eliminate if it is bellow the diagonal and not zero
                 if j < i and matrix[i][j] != 0:
                     matrix, vector = eliminate(matrix, vector, i, j)
 
