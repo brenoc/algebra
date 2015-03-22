@@ -16,11 +16,17 @@ b = np.array([0, -1, 2, 1])
 
 a, b, c, d = np.linalg.lstsq(A, b)[0]
 
-
 print "System solution:"
 print [a, b, c, d]
 
-x = [0, 1, 2, 4]
-plt.plot(p1, p2, p3, p4, 'o', label='Original data', markersize=10)
-# plt.plot(1, a*1**3+b*1**2+c*1+d, 'r', label='Fitted line')
+x = np.arange(-3, 5, 0.25)
+
+px = [0, 1, 2, 3]
+py = [1, 0, -1, 2]
+
+F = a*x**3+b*x**2+c*x*1+d
+
+plt.plot(x, F, 'r', label='Fitted line')
+plt.plot(px, py, 'o', label='Original data', markersize=4)
+plt.legend()
 plt.show()
