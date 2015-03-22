@@ -14,7 +14,7 @@ e4 = [0, 0, 0, 1]
 A = np.array([e1, e2, e3, e4])
 b = np.array([0, -1, 2, 1])
 
-a, b, c, d = np.linalg.lstsq(A, b)[0]
+a, b, c, d = np.linalg.solve(A, b)
 
 print "System solution:"
 print [a, b, c, d]
