@@ -2,6 +2,8 @@ import sys
 import time
 import random
 import numpy as np
+import matplotlib.pyplot as plt
+from math import log
 
 # Estime a complexidade do algoritmo de solucao de sistemas lineares do pacote
 # computacional de sua preferencia: registre os tempos que o pacote levou para
@@ -58,6 +60,12 @@ if __name__ == '__main__':
         print time_scenario(int(n))
     else:
         n_array = [16, 32, 64, 128, 256, 512, 1024, 2048]
+        time_array = []
         for n in n_array:
             print "Elapsed time for solving matrix "+str(n)+"x"+str(n)+":"
-            print time_scenario(n)
+            elapsed = time_scenario(n)
+            print elapsed
+            time_array.append(elapsed)
+
+        plt.plot(map(lambda x: log(x), n_array), map(lambda x: log(x), time_array))
+        plt.show()
