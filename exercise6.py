@@ -9,35 +9,28 @@ b = [3,
      1]
 
 # L * x = b
-# L is a matrix (nxn)
+# L is a lower triangular matrix (nxn) 
 # x is a vector (nx1)
 # b is a vector (nx1)
 
-
-def eliminate(matrix, vector, i, j):
-    mult = matrix[i][j] / matrix[j][j]
-    row_mult = map(lambda x: x*mult, matrix[j])
-    matrix[i] = map(lambda x, y: x - y, matrix[i], row_mult)
-    vector[i] = vector[i] - mult * vector[j]
-    return matrix, vector
-
-
-def gauss_elimination(matrix, vector):
+def solve(matrix, vector):
+    solution = []
     for i, row in enumerate(matrix):
-        # Skip if it is the first or the last row
-        if i is 0 and i is len(matrix):
-            pass
+        if i is 0:
+            solution.append(vector[0] / matrix[0][0])
         else:
-            for j, col in enumerate(row):
-                # Eliminate if it is bellow the diagonal and not zero
-                if j < i and matrix[i][j] != 0:
-                    matrix, vector = eliminate(matrix, vector, i, j)
+            temp = 0
+            for j, col in enumerate(row):                
+                if j < i:
+                    temp = temp + solution[j] * matrix[i][j]
+                elif j is i:
+                    right_side = vector[j] - temp
+                    solution.append(right_side / matrix[i][j]) 
 
-    return matrix, vector
+    return solution
 
 
 if __name__ == '__main__':
-    matrix, vector = gauss_elimination(L, b)
+    solution = solve(L, b)
 
-    print matrix
-    print vector
+    print solution
