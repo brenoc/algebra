@@ -43,7 +43,6 @@ def run_scenario(n):
 
 
 def time_scenario(n):
-
     start = time.time()
     run_scenario(n)
     end = time.time()
